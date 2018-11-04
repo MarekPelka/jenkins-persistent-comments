@@ -1,0 +1,61 @@
+<j:jelly xmlns:j="jelly:core">
+    <script src="${rootURL}/plugin/git-build-data/Comment.js"/>
+    <div style="padding:30px">
+        <table style="padding-bottom:15px;">
+            <tr>
+                <td>
+                    <img src="${rootURL}/plugin/git-build-data/comment.png"/>
+                </td>
+                <td>
+                    <h1 style="padding-left:20px;">Comment</h1>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="comment">
+                                    ${from.getLastCommentContent()}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="commentDate">
+                                    ${from.getLastCommentDate()}
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- No point showing author here -->
+                        <!-- <tr><td><div id="commentAuthor">${from.getLastCommentCreator()}</div></td></tr> -->
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div align="right">
+            <table>
+                <tr>
+                    <td>
+                        <button id="comment-button" onclick="updateComment(this)">
+                            <j:choose>
+                                <j:when test="${empty(from.getLastCommentContent())}">
+                                    ${%add comment}
+                                </j:when>
+                                <j:otherwise>
+                                    ${%edit comment}
+                                </j:otherwise>
+                            </j:choose>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="comment/history">Show History</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</j:jelly>
